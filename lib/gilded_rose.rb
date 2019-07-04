@@ -13,7 +13,8 @@ class GildedRose
           end
         end
       else
-        max_quality(item)
+        if item.quality < 50
+          item.quality = item.quality + 1
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
               if item.quality < 50
@@ -27,6 +28,7 @@ class GildedRose
             end
           end
         end
+      end
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - 1
       end
@@ -49,25 +51,5 @@ class GildedRose
       end
     end
   end
-  def max_quality(item)
-    if item.name == "Aged Brie" && item.quality < 50
-      item.quality += 1
-    end
-  end
-end
 
-
-
-class Item
-  attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
-  end
 end
